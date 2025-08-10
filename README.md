@@ -1,8 +1,7 @@
-# FastAPI URL Shortener with Analytics & Expiry
+# URL Shortener 
 
-A sleek, high-performance URL shortening service built with FastAPI and SQLite.
+A sleek, high-performance URL shortening service built with FastAPI and SQLite which does:
 
-Includes:
 - Generate short URLs that redirect to original links
 - URL expiration after configurable period (default 30 days)
 - Click analytics with timestamp, IP, and user-agent logging
