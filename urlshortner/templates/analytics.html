@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Analytics - {{ url_obj.short_code }}</title>
+</head>
+
+<body>
+    <h1>Analytics for Short URL: {{ url_obj.short_code }}</h1>
+    <p><strong>Original URL:</strong> <a href="{{ url_obj.original_url }}" target="_blank">{{ url_obj.original_url
+            }}</a></p>
+    <p><strong>Total Clicks:</strong> {{ total_clicks }}</p>
+    {% if url_obj.expire_at %}
+    <p><strong>Expires on:</strong> {{ url_obj.expire_at.strftime("%Y-%m-%d %H:%M:%S") }}</p>
+    {% endif %}
+
+    <h2>Click Details</h2>
+    <table border="1" cellpadding="6" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Timestamp (UTC)</th>
+                <th>IP Address</th>
+                <th>User Agent</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for click in clicks %}
+            <tr>
+                <td>{{ click.timestamp.strftime("%Y-%m-%d %H:%M:%S") }}</td>
+                <td>{{ click.ip_address or "Unknown" }}</td>
+                <td>{{ click.user_agent or "Unknown" }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3">No clicks yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p><a href="/">Back to Home</a></p>
+</body>
+
+</html>
